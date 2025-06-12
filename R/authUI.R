@@ -1,3 +1,8 @@
+shiny::addResourcePath(
+  prefix = "myPackageAssets",
+  directoryPath = system.file("www", package = "shintoshinymsal")
+)
+
 #' @title MSAL Auth UI
 #' @description This UI is used to inject the javascript into de the headers of the page
 #' @param id id of the Shiny module
@@ -10,7 +15,7 @@ authUI <- function(id = NULL) {
       # Load MSAL from CDN
       htmltools::tags$script(src = "https://alcdn.msauth.net/browser/2.34.0/js/msal-browser.min.js"),
       # Include custom auth logic
-      includeScript("www/wes.js")
+      htmltools::tags$script(src = "myPackageAssets/wes.js")
     ),
     htmltools::tags$div(id = ns("placeholder"))
   )

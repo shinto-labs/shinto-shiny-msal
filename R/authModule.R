@@ -5,23 +5,19 @@
 authServer <- function(id){
   shiny::moduleServer(id, function(input, output, session){
 
-    shiny::addResourcePath(
-      prefix = "myPackageAssets",
-      directoryPath = system.file("www", package = "shintoshinymsal")
-    )
 
-    # tok  <- shiny::reactiveVal(NULL)
-    # usr  <- shiny::reactiveVal(NULL)
-    #
-    # shiny::observeEvent(input$accessToken, {
-    #   tok(input$accessToken)
-    #   info <- jsonlite::fromJSON(input$userInfo)
-    #   usr(info)
-    # })
-    #
-    # # return a reactive list with $token and $user
-    # shiny::reactive({
-    #   list(token = tok(), user = usr())
-    # })
   })
 }
+# tok  <- shiny::reactiveVal(NULL)
+# usr  <- shiny::reactiveVal(NULL)
+#
+# shiny::observeEvent(input$accessToken, {
+#   tok(input$accessToken)
+#   info <- jsonlite::fromJSON(input$userInfo)
+#   usr(info)
+# })
+#
+# # return a reactive list with $token and $user
+# shiny::reactive({
+#   list(token = tok(), user = usr())
+# })

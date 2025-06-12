@@ -1,8 +1,3 @@
-shiny::addResourcePath(
-  prefix = "myPackageAssets",
-  directoryPath = system.file("www", package = "shintoshinymsal")
-)
-
 #' @title MSAL Auth UI
 #' @description This UI is used to inject the javascript into de the headers of the page
 #' @param id id of the Shiny module

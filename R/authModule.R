@@ -4,6 +4,12 @@
 #' @export
 authServer <- function(id){
   shiny::moduleServer(id, function(input, output, session){
+
+    shiny::addResourcePath(
+      prefix = "myPackageAssets",
+      directoryPath = system.file("www", package = "shintoshinymsal")
+    )
+
     # tok  <- shiny::reactiveVal(NULL)
     # usr  <- shiny::reactiveVal(NULL)
     #

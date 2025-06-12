@@ -5,6 +5,9 @@ Version: 0.0.1
 Author: Wesley Brants
 Maintainer: Wesley Brants <wesley@shintolabs.nl>
 Description: To create access to an EntraID login
+Imports:
+  shiny,
+  htmltools
 License: CC0
 Encoding: UTF-8
 RoxygenNote: 7.3.2

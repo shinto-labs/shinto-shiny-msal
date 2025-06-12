@@ -10,7 +10,7 @@ authUI <- function(id = NULL) {
       # Load MSAL from CDN
       htmltools::tags$script(src = "https://alcdn.msauth.net/browser/2.34.0/js/msal-browser.min.js"),
       # Include custom auth logic
-      includeScriptincludeScript("www/wes.js")
+      includeScript("www/wes.js")
     ),
     htmltools::tags$div(id = ns("placeholder"))
   )

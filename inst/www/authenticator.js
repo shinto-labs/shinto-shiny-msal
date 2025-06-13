@@ -42,10 +42,12 @@ async function acquireToken(account) {
 
     // Send token + userInfo straight into Shiny
     Shiny.setInputValue("accessToken", response.accessToken);
+
     const userInfo = {
       email: account.username,
-      name:  account.name,
-      roles: account.idTokenClaims?.roles || []
+      namex:  account.name,
+      roles: account.idTokenClaims?.roles || [],
+      oid: account.oid
     };
     Shiny.setInputValue("userInfo", JSON.stringify(userInfo));
 

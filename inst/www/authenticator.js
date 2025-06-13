@@ -41,15 +41,15 @@ async function acquireToken(account) {
     });
 
     // Send token + userInfo straight into Shiny
-    Shiny.setInputValue("accessToken", response.accessToken);
+    Shiny.setInputValue("accessTokenNew", response.accessToken);
 
     const userInfo = {
       email: account.username,
-      namex:  account.name,
+      name:  account.name,
       roles: account.idTokenClaims?.roles || [],
-      oid: account.oid
+      oid: account.idTokenClaims?.oid
     };
-    Shiny.setInputValue("userInfo", JSON.stringify(userInfo));
+    Shiny.setInputValue("userInfoNew", JSON.stringify(userInfo));
 
   } catch (err) {
     if (err instanceof msal.InteractionRequiredAuthError) {

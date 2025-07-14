@@ -1,8 +1,9 @@
-// www/auth.js
+// www/authenticator.js
 
-// 1) Your Azure AD app settings
-const CLIENT_ID   = "96a5a27a-2bd0-4e04-a886-abcea4ecd645";
-const AUTHORITY   = "https://login.microsoftonline.com/d0cf79cd-0bf3-42f9-8b79-cc2564ea9747";
+// 1) Your Azure AD app settings --> Moved to msal_Authenticator.R
+
+// console.log("My CLIENT_ID is:", CLIENT_ID);
+// console.log("My AUTHORITY is:", AUTHORITY);
 
 // 2) MSAL configuration
 const msalConfig = {

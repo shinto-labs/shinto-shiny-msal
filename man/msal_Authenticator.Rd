@@ -4,7 +4,12 @@
 \alias{msal_Authenticator}
 \title{MSAL Auth UI}
 \usage{
-msal_Authenticator()
+msal_Authenticator(client_id, authority)
+}
+\arguments{
+\item{client_id}{The Client ID needed in the authenticator script for Azure AD app settings}
+
+\item{authority}{The Authority token needed in the authenticator script for Azure AD app settings}
 }
 \description{
 This UI is used to inject the javascript into de the headers of the page

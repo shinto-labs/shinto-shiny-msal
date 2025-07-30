@@ -2,8 +2,8 @@
 
 // 1) Your Azure AD app settings --> Moved to msal_Authenticator.R
 
-// console.log("My CLIENT_ID is:", CLIENT_ID);
-// console.log("My AUTHORITY is:", AUTHORITY);
+console.log("My CLIENT_ID is:", CLIENT_ID);
+console.log("My AUTHORITY is:", AUTHORITY);
 
 // 2) MSAL configuration
 const msalConfig = {
@@ -78,7 +78,7 @@ $(document).on("shiny:connected", async function(event) {
   const accounts = msalInstance.getAllAccounts();
   if (accounts.length === 0) {
     // No user: send them to sign in
-    msalInstance.loginRedirect(loginRequest);
+    await msalInstance.loginRedirect(loginRequest);
   } else {
     // Already logged in: grab a token
     await acquireToken(accounts[0]);

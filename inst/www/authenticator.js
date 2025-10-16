@@ -48,7 +48,9 @@ async function acquireToken(account) {
       email: account.username,
       name:  account.name,
       roles: account.idTokenClaims?.roles || [],
-      oid: account.idTokenClaims?.oid
+      oid: account.idTokenClaims?.oid,
+      iss: account.idTokenClaims?.iss,
+      sub: account.idTokenClaims?.sub
     };
     Shiny.setInputValue("userInfo", JSON.stringify(userInfo));
 

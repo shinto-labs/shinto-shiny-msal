@@ -10,7 +10,7 @@ const msalConfig = {
   auth: {
     clientId: CLIENT_ID,
     authority: AUTHORITY,
-    redirectUri: window.location.origin,
+    redirectUri: window.location.origin, //"http://localhost:3838"
     navigateToLoginRequestUrl: true
   },
   cache: {
@@ -28,7 +28,8 @@ const msalConfig = {
 };
 
 // 3) Scopes & loginRequest
-const appScopes    = ["openid", "profile", "email"];
+const appScopes    = [`api://${CLIENT_ID}/login`, "openid", "profile", "email"];
+// const appScopes    = ["api://7f65821e-6021-4717-93fa-e58969453898/login", "openid", "profile", "email"];
 const loginRequest = { scopes: appScopes };
 
 let msalInstance;
@@ -36,23 +37,18 @@ let msalInstance;
 // 4) Acquire token silently (or redirect if needed), then send to Shiny
 async function acquireToken(account) {
   try {
+    // This line silently (without showing a login popup) asks Microsoft’s identity platform for an access token.
+    // scopes means “what permissions are we requesting?” (e.g. "User.Read", "Mail.Read", or your own API’s scope).
+    // account is the currently signed-in user.
+    // If the user is already logged in and has a valid session, MSAL can issue a new token quietly (no re-login prompt).
+
     const response = await msalInstance.acquireTokenSilent({
       scopes:  appScopes,
       account: account
     });
 
-    // Send token + userInfo straight into Shiny
+    // Send token straight into Shiny. The accessToken value is a JWT (JSON Web Token)
     Shiny.setInputValue("accessToken", response.accessToken);
-
-    const userInfo = {
-      email: account.username,
-      name:  account.name,
-      roles: account.idTokenClaims?.roles || [],
-      oid: account.idTokenClaims?.oid,
-      iss: account.idTokenClaims?.iss,
-      sub: account.idTokenClaims?.sub
-    };
-    Shiny.setInputValue("userInfo", JSON.stringify(userInfo));
 
   } catch (err) {
     if (err instanceof msal.InteractionRequiredAuthError) {

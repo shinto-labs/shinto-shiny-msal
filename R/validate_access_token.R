@@ -165,8 +165,6 @@ validate_access_token <- function(token, tenant_id,
     user_info_list <- list(
       name = name,
       email = email,
-      iss = iss,
-      sub = sub,
       msal_userid = msal_userid
     )
 

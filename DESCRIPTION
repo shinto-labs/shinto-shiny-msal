@@ -1,7 +1,7 @@
 Package: shintoshinymsal
 Type: Package
 Title: MSAL Connections to Shinto Shiny Apps
-Version: 0.0.7
+Version: 0.0.8
 Author: Wesley Brants
 Maintainer: Wesley Brants <wesley@shintolabs.nl>
 Description: To create access to an EntraID login
@@ -10,5 +10,5 @@ Imports:
   htmltools
 License: CC0
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)

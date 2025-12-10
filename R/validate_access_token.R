@@ -157,7 +157,7 @@ validate_access_token <- function(token, tenant_id,
   if(all(missing_token_check, app_id_present, missing_kid_check, missing_tid_check, matching_jwk_check,
          token_not_expired, token_already_valid, appid_valid)){
     name <- claims$name
-    email <- claims$email
+    email <- tolower(claims$email)
     iss <- claims$iss
     sub <- claims$sub
     msal_userid <- glue("{iss}:{sub}")

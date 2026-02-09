@@ -130,7 +130,7 @@ validate_access_token <- function(token, tenant_id,
       appid_valid <- TRUE
     }
   } else if(token_version == "1.0"){
-    version_1_token <- glue::glue("api://{app_id}")
+    version_1_token <- as.character(glue::glue("api://{app_id}"))
     if (!identical(claims$aud, version_1_token)){
       appid_valid <- FALSE
       stop(sprintf("Invalid appid: %s (comparing to claims$aud), app_id in token is %s", claims$aud, version_1_token))

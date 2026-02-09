@@ -11,6 +11,7 @@
 #' If everything matches → token is valid → allow access.
 #' @importFrom jose jwt_split read_jwk jwt_decode_sig
 #' @importFrom jsonlite toJSON
+#' @importFrom glue glue
 #' @param token retrieved access token at starting the application which needs to be checked
 #' @param tenant_id tenant ID given from the msal config. Can be NULL, will then not be checked but replaced with common.
 #' @param app_id App ID from Azure (equals client ID, can be found in the MSAL config)
@@ -121,11 +122,21 @@ validate_access_token <- function(token, tenant_id,
   #   issuer_valid <- TRUE
   # }
 
-  if (!identical(claims$aud, app_id)){
-    appid_valid <- FALSE
-    stop(sprintf("Invalid appid: %s", claims$aud))
-  } else {
-    appid_valid <- TRUE
+  if(token_version == "2.0"){
+    if (!identical(claims$aud, app_id)){
+      appid_valid <- FALSE
+      stop(sprintf("Invalid appid: %s (comparing to claims$aud), app_in in token is  %s", claims$aud, app_id))
+    } else {
+      appid_valid <- TRUE
+    }
+  } else if(token_version == "1.0"){
+    version_1_token <- glue:glue("api://{app_id}")
+    if (!identical(claims$aud, version_1_token)){
+      appid_valid <- FALSE
+      stop(sprintf("Invalid appid: %s (comparing to claims$aud), app_in in token is %s", claims$aud, version_1_token))
+    } else {
+      appid_valid <- TRUE
+    }
   }
 
 
@@ -160,7 +171,7 @@ validate_access_token <- function(token, tenant_id,
     email <- tolower(claims$email)
     iss <- claims$iss
     sub <- claims$sub
-    msal_userid <- glue("{iss}:{sub}")
+    msal_userid <- glue::glue("{iss}:{sub}")
 
     user_info_list <- list(
       name = name,

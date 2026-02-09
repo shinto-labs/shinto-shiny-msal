@@ -2,6 +2,7 @@
 
 export(msal_Authenticator)
 export(validate_access_token)
+importFrom(glue,glue)
 importFrom(htmltools,tagList)
 importFrom(htmltools,tags)
 importFrom(httr2,req_perform)
